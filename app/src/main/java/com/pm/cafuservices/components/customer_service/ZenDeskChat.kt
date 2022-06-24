@@ -1,7 +1,6 @@
-package com.pm.cafuservices.component.customer_service
+package com.pm.cafuservices.components.customer_service
 
 import android.content.Context
-import android.content.Intent
 
 
 class ZenDeskChat constructor(

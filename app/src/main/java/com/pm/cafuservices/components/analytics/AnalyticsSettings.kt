@@ -1,4 +1,4 @@
-package com.pm.cafuservices.component.analytics
+package com.pm.cafuservices.components.analytics
 
 open class AnalyticsSettings {
 

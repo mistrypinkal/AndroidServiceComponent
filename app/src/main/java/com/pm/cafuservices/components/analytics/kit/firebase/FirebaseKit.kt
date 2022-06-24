@@ -1,6 +1,6 @@
-package com.pm.cafuservices.component.analytics.kit.firebase
+package com.pm.cafuservices.components.analytics.kit.firebase
 
-import com.pm.cafuservices.component.analytics.AnalyticsKit
+import com.pm.cafuservices.components.analytics.AnalyticsKit
 
 class FirebaseKit private constructor() : AnalyticsKit {
 

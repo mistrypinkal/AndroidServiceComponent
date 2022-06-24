@@ -1,7 +1,7 @@
 package com.pm.cafuservices.sample_event
 
-import com.pm.cafuservices.component.analytics.AnalyticsKit
-import com.pm.cafuservices.component.analytics.events.CustomEvent
+import com.pm.cafuservices.components.analytics.AnalyticsKit
+import com.pm.cafuservices.components.analytics.events.CustomEvent
 
 class ConfirmPhoneNumberLogEvent constructor(
     userStatus: Int,

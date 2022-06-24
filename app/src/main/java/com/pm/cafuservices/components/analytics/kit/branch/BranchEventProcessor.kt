@@ -1,7 +1,7 @@
-package com.pm.cafuservices.component.analytics.kit.branch
+package com.pm.cafuservices.components.analytics.kit.branch
 
 import android.content.Context
-import com.pm.cafuservices.component.old.EventOld
+import com.pm.cafuservices.components.old.EventOld
 import io.branch.referral.util.BranchEvent
 
 class BranchEventProcessor(private val context: Context) {

@@ -1,4 +1,4 @@
-package com.pm.cafuservices.component.old
+package com.pm.cafuservices.components.old
 
 class AnalyticsOld constructor(
     private val cleverTapEventProcessor: CleverTapEventProcessor

@@ -1,12 +1,12 @@
-package com.pm.cafuservices.component.analytics.kit.firebase
+package com.pm.cafuservices.components.analytics.kit.firebase
 
 import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.pm.cafuservices.component.analytics.AnalyticsDispatcher
-import com.pm.cafuservices.component.analytics.AnalyticsKit
-import com.pm.cafuservices.component.analytics.events.CustomEvent
-import com.pm.cafuservices.component.analytics.events.SetUserProperties
+import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
+import com.pm.cafuservices.components.analytics.AnalyticsKit
+import com.pm.cafuservices.components.analytics.events.CustomEvent
+import com.pm.cafuservices.components.analytics.events.SetUserProperties
 
 class FirebaseAnalyticsDispatcherImpl(
     override val init: Boolean,

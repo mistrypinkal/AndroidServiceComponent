@@ -1,4 +1,4 @@
-package com.pm.cafuservices.component.old
+package com.pm.cafuservices.components.old
 
 import com.clevertap.android.sdk.CleverTapAPI
 import com.pm.cafuservices.sample_event.EventNames

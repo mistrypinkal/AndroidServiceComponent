@@ -2,9 +2,9 @@ package com.pm.cafuservices
 
 import androidx.multidex.MultiDexApplication
 import com.clevertap.android.sdk.CleverTapAPI
-import com.pm.cafuservices.component.analytics.Analytics
-import com.pm.cafuservices.component.analytics.AnalyticsSettings
-import com.pm.cafuservices.component.analytics.kit.firebase.FirebaseAnalyticsDispatcherImpl
+import com.pm.cafuservices.components.analytics.Analytics
+import com.pm.cafuservices.components.analytics.AnalyticsSettings
+import com.pm.cafuservices.components.analytics.kit.firebase.FirebaseAnalyticsDispatcherImpl
 import io.branch.referral.Branch
 
 class BaseApplication : MultiDexApplication() {

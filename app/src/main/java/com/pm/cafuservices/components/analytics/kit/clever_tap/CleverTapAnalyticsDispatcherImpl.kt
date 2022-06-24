@@ -1,11 +1,11 @@
-package com.pm.cafuservices.component.analytics.kit.clever_tap
+package com.pm.cafuservices.components.analytics.kit.clever_tap
 
 import android.content.Context
 import com.clevertap.android.sdk.CleverTapAPI
-import com.pm.cafuservices.component.analytics.AnalyticsDispatcher
-import com.pm.cafuservices.component.analytics.AnalyticsKit
-import com.pm.cafuservices.component.analytics.events.CustomEvent
-import com.pm.cafuservices.component.analytics.events.SetUserProperties
+import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
+import com.pm.cafuservices.components.analytics.AnalyticsKit
+import com.pm.cafuservices.components.analytics.events.CustomEvent
+import com.pm.cafuservices.components.analytics.events.SetUserProperties
 
 class CleverTapAnalyticsDispatcherImpl(
     override val init: Boolean,

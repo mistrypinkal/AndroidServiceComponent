@@ -1,6 +1,6 @@
-package com.pm.cafuservices.component.analytics.events.base
+package com.pm.cafuservices.components.analytics.events.base
 
-import com.pm.cafuservices.component.analytics.AnalyticsKit
+import com.pm.cafuservices.components.analytics.AnalyticsKit
 
 interface Event {
 

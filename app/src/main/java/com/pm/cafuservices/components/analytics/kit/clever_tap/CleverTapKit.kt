@@ -1,6 +1,6 @@
-package com.pm.cafuservices.component.analytics.kit.clever_tap
+package com.pm.cafuservices.components.analytics.kit.clever_tap
 
-import com.pm.cafuservices.component.analytics.AnalyticsKit
+import com.pm.cafuservices.components.analytics.AnalyticsKit
 
 class CleverTapKit private constructor() : AnalyticsKit {
 

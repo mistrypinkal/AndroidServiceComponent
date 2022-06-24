@@ -1,8 +1,8 @@
-package com.pm.cafuservices.component.analytics
+package com.pm.cafuservices.components.analytics
 
-import com.pm.cafuservices.component.analytics.events.CustomEvent
-import com.pm.cafuservices.component.analytics.events.SetUserProperties
-import com.pm.cafuservices.component.analytics.events.base.Event
+import com.pm.cafuservices.components.analytics.events.CustomEvent
+import com.pm.cafuservices.components.analytics.events.SetUserProperties
+import com.pm.cafuservices.components.analytics.events.base.Event
 
 interface AnalyticsDispatcher {
 

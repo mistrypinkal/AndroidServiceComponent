@@ -1,6 +1,6 @@
-package com.pm.cafuservices.component.analytics
+package com.pm.cafuservices.components.analytics
 
-import com.pm.cafuservices.component.analytics.events.base.Event
+import com.pm.cafuservices.components.analytics.events.base.Event
 
 class Analytics constructor(
     val settings: AnalyticsSettings,
