@@ -59,4 +59,15 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    implementation "com.clevertap.android:clevertap-android-sdk:4.1.0"
+    implementation "com.newrelic.agent.android:android-agent:6.0.0"
+    implementation "io.branch.sdk.android:library:5.0.1"
+    implementation "com.zopim.android:sdk:1.4.9"
+    implementation group: 'com.zendesk', name: 'support', version: '4.0.0'
+    implementation "androidx.multidex:multidex:2.0.1"
+
+    // Firebase Analytics
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
 }

@@ -1,4 +1,4 @@
-package com.pm.cafujetpackcompose
+package com.pm.cafuservices
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,23 +11,33 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pm.cafujetpackcompose.ui.theme.CafuJetpackComposeTheme
+import com.pm.cafuservices.component.analytics.Analytics
+import com.pm.cafuservices.sample_event.ConfirmPhoneNumberLogEvent
+import com.pm.cafuservices.jetpack.ui.theme.CafuJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
+
+    val app: BaseApplication
+        get() {
+            return application as BaseApplication
+        }
+
+    val analytics: Analytics
+        get() {
+            return app.analytics
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -35,6 +45,12 @@ class MainActivity : ComponentActivity() {
                 ScaffoldSample()
             }
         }
+
+        analytics.track(
+            ConfirmPhoneNumberLogEvent(
+                0, "523516006", "+971"
+            )
+        )
     }
 }
 
@@ -51,7 +67,7 @@ fun ScaffoldSample() {
             Text(text = "Drawer menu 1")
         },
         content = {
-            ContentCompose()
+            ContentCustomerCompose()
         },
         bottomBar = {
             BottomAppBarCompose()
@@ -60,7 +76,7 @@ fun ScaffoldSample() {
 }
 
 @Composable
-fun ContentCompose() {
+fun ContentCustomerCompose() {
     val pinter = painterResource(id = R.drawable.logo)
     Column(modifier = Modifier.fillMaxWidth()) {
         Spacer(modifier = Modifier.height(32.dp))
@@ -89,6 +105,7 @@ fun ContentCompose() {
     }
 
 }
+
 
 @Composable
 fun CarModel(
@@ -296,26 +313,6 @@ fun CarModelRowSingleCardPreview() {
             modifier = Modifier.padding(8.dp)
         )
     }
-}
-
-
-@Composable
-fun TopAppBarCompose() {
-    TopAppBar(
-        title = {
-            Text(text = "Jetpack Compose Example2")
-        },
-        navigationIcon = {
-            IconButton(onClick = {}) {
-                Icon(
-                    imageVector = Icons.Default.Menu,
-                    contentDescription = "Navigation back"
-                )
-            }
-        },
-        elevation = 10.dp,
-        backgroundColor = MaterialTheme.colors.primary
-    )
 }
 
 

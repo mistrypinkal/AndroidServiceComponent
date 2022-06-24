@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.pm.cafujetpackcompose">
+    package="com.pm.cafuservices">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,12 +17,12 @@
         android:theme="@style/Theme.CafuJetpackCompose"
         tools:targetApi="31">
         <activity
-            android:name=".pilot.HomeActivity"
+            android:name="com.pm.cafuservices.jetpack.pilot.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.CafuJetpackCompose" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.pm.cafuservices.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.CafuJetpackCompose">

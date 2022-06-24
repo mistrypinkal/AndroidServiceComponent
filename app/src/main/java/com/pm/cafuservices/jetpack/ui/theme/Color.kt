@@ -1,4 +1,4 @@
-package com.pm.cafujetpackcompose.ui.theme
+package com.pm.cafuservices.jetpack.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

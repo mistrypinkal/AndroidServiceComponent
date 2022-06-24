@@ -1,4 +1,4 @@
-package com.pm.cafujetpackcompose
+package com.pm.cafuservices
 
 import org.junit.Test
 
