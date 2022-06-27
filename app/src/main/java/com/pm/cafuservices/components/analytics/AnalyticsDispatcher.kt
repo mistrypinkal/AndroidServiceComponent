@@ -1,5 +1,6 @@
 package com.pm.cafuservices.components.analytics
 
+import android.util.Log
 import com.pm.cafuservices.components.analytics.events.CustomEvent
 import com.pm.cafuservices.components.analytics.events.SetUserProperties
 import com.pm.cafuservices.components.analytics.events.base.Event
@@ -34,16 +35,18 @@ interface AnalyticsDispatcher {
 
             // track for each type differently, including multiple implementations
             if (event is CustomEvent) {
-                trackCustomEvent(event)
+                //trackCustomEvent(event)
                 handled = true
             }
 
             if (event is SetUserProperties) {
-                setUserProperties(event)
+                //setUserProperties(event)
                 handled = true
             }
 
 
+        }else{
+            Log.d("TAG", "track: Error")
         }
     }
 

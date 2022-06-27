@@ -2,7 +2,6 @@ package com.pm.cafuservices.components.analytics.kit.firebase
 
 import android.content.Context
 import android.os.Bundle
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
@@ -13,7 +12,7 @@ class FirebaseAnalyticsDispatcherImpl(
     private val context: Context
 ) : AnalyticsDispatcher {
 
-    var firebaseAnalytics: FirebaseAnalytics? = null
+   // var firebaseAnalytics: FirebaseAnalytics? = null
 
     companion object {
         const val DispatcherName = "DefaultFirebaseDispatcher"
@@ -24,11 +23,11 @@ class FirebaseAnalyticsDispatcherImpl(
     override val dispatcherName: String = DispatcherName
 
     override fun initDispatcher() {
-        firebaseAnalytics = FirebaseAnalytics.getInstance(context)
+      //  firebaseAnalytics = FirebaseAnalytics.getInstance(context)
     }
 
     override fun trackCustomEvent(event: CustomEvent) {
-        firebaseAnalytics?.logEvent(event.getEventName(kit).firebaseFriendly(), event.getBundle())
+      //  firebaseAnalytics?.logEvent(event.getEventName(kit).firebaseFriendly(), event.getBundle())
     }
 
     override fun setUserProperties(properties: SetUserProperties) {

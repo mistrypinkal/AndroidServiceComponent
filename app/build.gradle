@@ -47,7 +47,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
@@ -63,11 +63,8 @@ dependencies {
     implementation "com.clevertap.android:clevertap-android-sdk:4.1.0"
     implementation "com.newrelic.agent.android:android-agent:6.0.0"
     implementation "io.branch.sdk.android:library:5.0.1"
-    implementation "com.zopim.android:sdk:1.4.9"
-    implementation group: 'com.zendesk', name: 'support', version: '4.0.0'
     implementation "androidx.multidex:multidex:2.0.1"
 
     // Firebase Analytics
-    implementation 'com.google.firebase:firebase-core:16.0.1'
 
 }

@@ -4,6 +4,7 @@ import androidx.multidex.MultiDexApplication
 import com.clevertap.android.sdk.CleverTapAPI
 import com.pm.cafuservices.components.analytics.Analytics
 import com.pm.cafuservices.components.analytics.AnalyticsSettings
+import com.pm.cafuservices.components.analytics.kit.clever_tap.CleverTapAnalyticsDispatcherImpl
 import com.pm.cafuservices.components.analytics.kit.firebase.FirebaseAnalyticsDispatcherImpl
 import io.branch.referral.Branch
 
@@ -19,11 +20,11 @@ class BaseApplication : MultiDexApplication() {
 
         initAnalytics()
 
-        initNewRelic()
+        // initNewRelic()
 
-        initCleverTap()
+        // initCleverTap()
 
-        initBranch()
+        // initBranch()
     }
 
     private fun initAnalytics() {
@@ -36,7 +37,7 @@ class BaseApplication : MultiDexApplication() {
         analytics = Analytics(
             settings,
             FirebaseAnalyticsDispatcherImpl(init = true, context = this),
-            FirebaseAnalyticsDispatcherImpl(init = true, context = this),
+            CleverTapAnalyticsDispatcherImpl(init = true, context = this),
         )
 
     }

@@ -3,16 +3,7 @@ buildscript {
         compose_version = '1.1.0-beta01'
     }
 
-    repositories {
-        google()
-        mavenCentral()
-        jcenter()
-        maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
-    }
 
-    dependencies {
-
-    }
 
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {

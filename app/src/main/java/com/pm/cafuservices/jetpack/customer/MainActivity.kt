@@ -23,8 +23,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pm.cafuservices.components.analytics.Analytics
-import com.pm.cafuservices.sample_event.ConfirmPhoneNumberLogEvent
+import com.pm.cafuservices.components.analytics.kit.firebase.FirebaseAnalyticsDispatcherImpl
+import com.pm.cafuservices.components.analytics.kit.firebase.FirebaseKit
 import com.pm.cafuservices.jetpack.ui.theme.CafuJetpackComposeTheme
+import com.pm.cafuservices.sample_event.ConfirmPhoneNumberLogEvent
 
 class MainActivity : ComponentActivity() {
 
@@ -46,13 +48,23 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        /*
+        // For disable specific Analytics kit
+        analytics.setKitEnabled(FirebaseKit.instance, false)
+        analytics.setDispatcherEnabled(
+            FirebaseAnalyticsDispatcherImpl.DispatcherName, false
+        )
+        */
+
         analytics.track(
             ConfirmPhoneNumberLogEvent(
                 0, "523516006", "+971"
             )
         )
+
     }
 }
+
 
 @Composable
 fun ScaffoldSample() {
