@@ -64,6 +64,8 @@ dependencies {
     implementation "io.branch.sdk.android:library:5.0.1"
     implementation "androidx.multidex:multidex:2.0.1"
 
+    implementation group: 'com.zendesk', name: 'support-providers', version: '3.0.2'
+    implementation 'com.zopim.android:sdk:1.4.9'
     // Firebase Analytics
 
 }
