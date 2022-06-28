@@ -12,7 +12,7 @@ interface LiveChatProvider : CustomerServiceProvider {
     /**
      *  Process the chat with set visitor info and then execute the live chat
      */
-    fun process(csVisitorInfo: CSVisitorInfo){
+    fun execute(csVisitorInfo: CSVisitorInfo){
 
         // execute the chat
         executeLiveChat(csVisitorInfo)
