@@ -18,5 +18,5 @@ interface CustomerServiceProvider {
      * Set the visitor info like,
      * User name, mobile number and phone number
      */
-    fun <T> getVisitorInfo(CSVisitorInfo: CSVisitorInfo) : T
+    fun <T> getVisitorInfo(csVisitorInfo: CSVisitorInfo) : T
 }
