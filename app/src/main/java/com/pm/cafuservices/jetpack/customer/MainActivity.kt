@@ -1,6 +1,7 @@
 package com.pm.cafuservices
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
@@ -25,8 +26,13 @@ import androidx.compose.ui.unit.sp
 import com.pm.cafuservices.components.analytics.Analytics
 import com.pm.cafuservices.components.analytics.kit.firebase.FirebaseAnalyticsDispatcherImpl
 import com.pm.cafuservices.components.analytics.kit.firebase.FirebaseKit
+import com.pm.cafuservices.components.customer_service.CustomerService
+import com.pm.cafuservices.components.customer_service.manager.ZendeskHelpCenterProviderImpl
+import com.pm.cafuservices.components.customer_service.manager.ZendeskLiveChatProviderImpl
+import com.pm.cafuservices.components.customer_service.manager.model.UserIdentity
 import com.pm.cafuservices.jetpack.ui.theme.CafuJetpackComposeTheme
 import com.pm.cafuservices.sample_event.ConfirmPhoneNumberLogEvent
+import kotlin.math.log
 
 class MainActivity : ComponentActivity() {
 
@@ -39,6 +45,8 @@ class MainActivity : ComponentActivity() {
         get() {
             return app.analytics
         }
+
+    val customerService = ZendeskHelpCenterProviderImpl(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +69,19 @@ class MainActivity : ComponentActivity() {
                 0, "523516006", "+971"
             )
         )
+
+        var userIdentity = UserIdentity(
+            firstName = "Pinkal",
+            lastName = "Mistry",
+            email = "pinkal@cafu.com",
+            mobileNumber = "+971551385208"
+        )
+
+        customerService.init()
+        customerService.setIdentity(userIdentity)
+        customerService.getSection {
+            Log.d("TAG", "onCreate: ${it.size}")
+        }
 
     }
 }

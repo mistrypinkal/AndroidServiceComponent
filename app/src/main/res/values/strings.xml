@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CafuJetpackCompose</string>
     <string name="title_activity_home">HomeActivity</string>
+
+    <string name="my_orders">My Orders</string>
+    <string name="faq">FAQ</string>
 </resources>

@@ -1,6 +1,6 @@
 package com.pm.cafuservices.components.customer_service
 
-import com.pm.cafuservices.components.customer_service.manager.model.CSVisitorInfo
+import com.pm.cafuservices.components.customer_service.manager.model.UserIdentity
 
 interface CustomerServiceProvider {
 
@@ -12,11 +12,11 @@ interface CustomerServiceProvider {
     /**
      * Set the identity for the provider
      */
-    fun setIdentity()
+    fun setIdentity(userIdentity: UserIdentity)
 
     /**
      * Set the visitor info like,
      * User name, mobile number and phone number
      */
-    fun <T> getVisitorInfo(csVisitorInfo: CSVisitorInfo) : T
+    fun <T> getVisitorInfo(userIdentity: UserIdentity) : T
 }
