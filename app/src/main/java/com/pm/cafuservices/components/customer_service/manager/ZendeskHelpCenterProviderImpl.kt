@@ -110,7 +110,6 @@ class ZendeskHelpCenterProviderImpl(
      * Get Section with article - Get Section Article from zendesk using suspendCoroutine and
      *                            Pass Result as lambda function
      */
-    @OptIn(FlowPreview::class)
     override fun getSectionWithArticle(result: (Result<List<HCSectionWithArticle>>) -> Unit) {
         result(Result.InProgress)
         ioScope.launch {
