@@ -32,6 +32,9 @@ class ZendeskHelpCenterProviderImpl(
         const val HC_ZENDESK_AUTH_CLIENT_ID = "mobile_sdk_client_975eb402a1fe511124a3"
     }
 
+    /**
+     *  Init Zendesk
+     */
     override fun init() {
         Zendesk.INSTANCE.init(
             context, HC_ZENDESK_URL,
@@ -40,6 +43,10 @@ class ZendeskHelpCenterProviderImpl(
         )
     }
 
+    /**
+     * Set identity - Set user detail and create identity
+     *                Also create the provider
+     */
     override fun setIdentity(userIdentity: UserIdentity) {
         val name: String = userIdentity.firstName +
                 if (userIdentity.lastName.isNotEmpty()
@@ -66,7 +73,8 @@ class ZendeskHelpCenterProviderImpl(
     }
 
     /**
-     * Get section from zendesk and warp that function with coroutine and pass as lamda function
+     * Get section - Get section from zendesk using suspendCoroutine and
+     *               Pass Result as lambda function
      */
     override fun getSection(result: (Result<List<HCSection>>) -> Unit) {
         ioScope.launch {
@@ -81,6 +89,10 @@ class ZendeskHelpCenterProviderImpl(
         }
     }
 
+    /**
+     * Get article - Get Article from zendesk using suspendCoroutine and
+     *               Pass Result as lambda function
+     */
     override fun getArticle(id: Long, result: (Result<List<HCArticle>>) -> Unit) {
         ioScope.launch {
             try {
@@ -94,6 +106,10 @@ class ZendeskHelpCenterProviderImpl(
         }
     }
 
+    /**
+     * Get Section with article - Get Section Article from zendesk using suspendCoroutine and
+     *                            Pass Result as lambda function
+     */
     @OptIn(FlowPreview::class)
     override fun getSectionWithArticle(result: (Result<List<HCSectionWithArticle>>) -> Unit) {
         result(Result.InProgress)
@@ -120,6 +136,10 @@ class ZendeskHelpCenterProviderImpl(
 
     }
 
+    /**
+     * Get section - Get section from zendesk using suspendCoroutine and
+     *               Pass Result in resume
+     */
     @ExperimentalCoroutinesApi
     private suspend fun getSectionFromZendesk(): List<HCSection> =
         suspendCoroutine { continuation ->
@@ -146,6 +166,10 @@ class ZendeskHelpCenterProviderImpl(
             } ?: continuation.resume(emptyList())
         }
 
+    /**
+     * Get Article - Get article from zendesk using suspendCoroutine and
+     *               Pass Result in resume
+     */
     @ExperimentalCoroutinesApi
     private suspend fun getArticleFromZendesk(id: Long): List<HCArticle> =
         suspendCoroutine { continuation ->
