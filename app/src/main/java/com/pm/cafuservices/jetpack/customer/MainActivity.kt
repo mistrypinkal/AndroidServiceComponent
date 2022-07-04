@@ -27,6 +27,7 @@ import com.pm.cafuservices.components.customer_service.manager.model.CSResult
 import com.pm.cafuservices.components.customer_service.manager.model.UserIdentity
 import com.pm.cafuservices.jetpack.ui.theme.CafuJetpackComposeTheme
 import com.pm.cafuservices.sample_event.ConfirmPhoneNumberLogEvent
+import com.pm.cafuservices.sample_event.SetUserProfile
 
 class MainActivity : ComponentActivity() {
 
@@ -87,6 +88,17 @@ class MainActivity : ComponentActivity() {
         analytics.track(
             ConfirmPhoneNumberLogEvent(
                 0, "523516006", "+971"
+            )
+        )
+
+        analytics.track(
+            SetUserProfile(
+                userId = "2",
+                mobileNumber = "+971523516006",
+                name = "Pinkal Mistry",
+                email = "pinkal@cafu.com",
+                customerType = "1",
+                photoURL = "http://www.google.com"
             )
         )
 

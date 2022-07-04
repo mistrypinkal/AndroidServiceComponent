@@ -9,12 +9,13 @@ import com.pm.cafuservices.components.analytics.AnalyticsKit
  * @Description: TODO
  */
 interface UpdateUserProfile : UserProperties {
-    val key: String
-    val value: String
+    fun getProperties(kit: AnalyticsKit): MutableMap<String, Any>
 
     override fun getUserProperties(kit: AnalyticsKit): MutableMap<String, Any> {
         val userProperties = super.getUserProperties(kit)
-        userProperties[key] = value
+        getProperties(kit).forEach {
+            userProperties[it.key] = it.value
+        }
         return userProperties
     }
 }
