@@ -63,6 +63,7 @@ class CleverTapAnalyticsDispatcherImpl(
 
     private fun CustomEvent.getParameters(): HashMap<String, Any?> {
         val hashMap = HashMap<String, Any?>()
+
         getParameters(kit).forEach {
             when (it.value) {
                 is String -> hashMap[it.key] = it.value.toString().lowercase()
@@ -70,14 +71,17 @@ class CleverTapAnalyticsDispatcherImpl(
             }
 
         }
+
         return hashMap
     }
 
     private fun UserProperties.getUserProperties(): HashMap<String, Any?> {
         val hashMap = HashMap<String, Any?>()
+
         getUserProperties(kit).forEach {
             hashMap[it.key] = it.value
         }
+
         return hashMap
     }
 }

@@ -7,12 +7,18 @@ import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
 import com.pm.cafuservices.components.analytics.events.UserProperties
 
+/**
+ * @Author: Pinkal Mistry
+ * @Date: 04/07/2022 3:13 PM
+ * @Version: 1.0
+ * @Description: TODO
+ */
 class FirebaseAnalyticsDispatcherImpl(
     override val init: Boolean,
     private val context: Context
 ) : AnalyticsDispatcher {
 
-   // var firebaseAnalytics: FirebaseAnalytics? = null
+    // var firebaseAnalytics: FirebaseAnalytics? = null
 
     companion object {
         const val DispatcherName = "DefaultFirebaseDispatcher"
@@ -23,16 +29,24 @@ class FirebaseAnalyticsDispatcherImpl(
     override val dispatcherName: String = DispatcherName
 
     override fun initDispatcher() {
-      //  firebaseAnalytics = FirebaseAnalytics.getInstance(context)
+        //  firebaseAnalytics = FirebaseAnalytics.getInstance(context)
     }
 
     override fun trackCustomEvent(event: CustomEvent) {
-      //  firebaseAnalytics?.logEvent(event.getEventName(kit).firebaseFriendly(), event.getBundle())
+        //  firebaseAnalytics?.logEvent(event.getEventName(kit).firebaseFriendly(), event.getBundle())
     }
 
     override fun setUserProperties(properties: UserProperties) {
-
     }
+
+
+    override fun setUserProfile(properties: UserProperties) {
+        //firebase.onUserLogin(properties.getUserProperties())
+    }
+
+    override fun updateUserProfile(properties: UserProperties) {
+    }
+
 
     private fun String.firebaseFriendly(): String {
 
@@ -63,5 +77,15 @@ class FirebaseAnalyticsDispatcherImpl(
         }
 
         return bundle
+    }
+
+    private fun UserProperties.getUserProperties(): HashMap<String, Any?> {
+        val hashMap = HashMap<String, Any?>()
+
+        getUserProperties(kit).forEach {
+            hashMap[it.key] = it.value
+        }
+
+        return hashMap
     }
 }
