@@ -4,12 +4,11 @@ import com.pm.cafuservices.components.analytics.AnalyticsKit
 
 /**
  * @Author: Pinkal Mistry
- * @Date: 26/06/2022 10:26 PM
+ * @Date: 04/07/2022 2:24 PM
  * @Version: 1.0
  * @Description: TODO
  */
-interface SetUserProperty : UserProperties {
-
+interface UpdateUserProfile : UserProperties {
     val key: String
     val value: String
 

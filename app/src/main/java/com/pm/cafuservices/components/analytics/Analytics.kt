@@ -2,6 +2,12 @@ package com.pm.cafuservices.components.analytics
 
 import com.pm.cafuservices.components.analytics.events.base.Event
 
+/**
+ * @Author: Pinkal Mistry
+ * @Date: 26/06/2022 10:26 PM
+ * @Version: 1.0
+ * @Description: TODO
+ */
 class Analytics constructor(
     val settings: AnalyticsSettings,
     private vararg val dispatchers: AnalyticsDispatcher
@@ -38,8 +44,6 @@ class Analytics constructor(
                 } catch (e: Exception) {
                 }
             }
-
-
         }
     }
 

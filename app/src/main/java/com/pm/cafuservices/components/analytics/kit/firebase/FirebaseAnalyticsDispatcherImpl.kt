@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
-import com.pm.cafuservices.components.analytics.events.SetUserProperties
+import com.pm.cafuservices.components.analytics.events.UserProperties
 
 class FirebaseAnalyticsDispatcherImpl(
     override val init: Boolean,
@@ -30,7 +30,7 @@ class FirebaseAnalyticsDispatcherImpl(
       //  firebaseAnalytics?.logEvent(event.getEventName(kit).firebaseFriendly(), event.getBundle())
     }
 
-    override fun setUserProperties(properties: SetUserProperties) {
+    override fun setUserProperties(properties: UserProperties) {
 
     }
 

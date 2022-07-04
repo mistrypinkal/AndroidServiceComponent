@@ -3,8 +3,14 @@ package com.pm.cafuservices.components.analytics.events
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.base.Event
 
-interface SetUserProperties : Event {
-    fun getUserProperties(kit: AnalyticsKit): MutableMap<String, Any>{
+/**
+ * @Author: Pinkal Mistry
+ * @Date: 26/06/2022 10:26 PM
+ * @Version: 1.0
+ * @Description: TODO
+ */
+interface UserProperties : Event {
+    fun getUserProperties(kit: AnalyticsKit): MutableMap<String, Any> {
         return mutableMapOf()
     }
 }

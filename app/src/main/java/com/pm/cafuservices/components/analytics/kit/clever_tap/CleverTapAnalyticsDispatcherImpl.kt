@@ -5,7 +5,7 @@ import com.clevertap.android.sdk.CleverTapAPI
 import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
-import com.pm.cafuservices.components.analytics.events.SetUserProperties
+import com.pm.cafuservices.components.analytics.events.UserProperties
 
 class CleverTapAnalyticsDispatcherImpl(
     override val init: Boolean,
@@ -30,7 +30,7 @@ class CleverTapAnalyticsDispatcherImpl(
         cleverTapAPI?.pushEvent(event.getEventName(kit).firebaseFriendly(), event.getParameters())
     }
 
-    override fun setUserProperties(properties: SetUserProperties) {
+    override fun setUserProperties(properties: UserProperties) {
         val userProperty = HashMap<String, Any>(1)
         properties.getUserProperties(kit).forEach {
             userProperty[it.key] = it.value
