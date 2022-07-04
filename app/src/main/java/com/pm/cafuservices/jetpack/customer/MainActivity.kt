@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pm.cafuservices.components.analytics.Analytics
 import com.pm.cafuservices.components.customer_service.manager.ZendeskHelpCenterProviderImpl
-import com.pm.cafuservices.components.customer_service.manager.model.Result
+import com.pm.cafuservices.components.customer_service.manager.model.CSResult
 import com.pm.cafuservices.components.customer_service.manager.model.UserIdentity
 import com.pm.cafuservices.jetpack.ui.theme.CafuJetpackComposeTheme
 import com.pm.cafuservices.sample_event.ConfirmPhoneNumberLogEvent
@@ -102,7 +102,7 @@ class MainActivity : ComponentActivity() {
         customerService.getSection { result ->
 
             when (result) {
-                is Result.Success -> {
+                is CSResult.Success -> {
                     Log.d("TAG", "Main Activity onCreate: ${result.data.size}")
                 }
                 else -> {}
@@ -112,7 +112,7 @@ class MainActivity : ComponentActivity() {
         var isLoading by remember { mutableStateOf(false) }
         customerService.getSectionWithArticle { result ->
             when (result) {
-                is Result.Success -> {
+                is CSResult.Success -> {
                     isLoading = false
                     Log.d("TAG", "Success: ")
                     Log.d("TAG", "Main Activity getSectionWithArticle: ${result.data.size}")
@@ -120,10 +120,10 @@ class MainActivity : ComponentActivity() {
                         Log.d("TAG", "Main Activity getArticle Size: ${it.articlesList.size}")
                     }
                 }
-                is Result.Error -> {
+                is CSResult.Error -> {
 
                 }
-                is Result.InProgress -> {
+                is CSResult.InProgress -> {
                     isLoading = true
                     Log.d("TAG", "InProgress: ")
                 }

@@ -76,15 +76,15 @@ class ZendeskHelpCenterProviderImpl(
      * Get section - Get section from zendesk using suspendCoroutine and
      *               Pass Result as lambda function
      */
-    override fun getSection(result: (Result<List<HCSection>>) -> Unit) {
+    override fun getSection(result: (CSResult<List<HCSection>>) -> Unit) {
         ioScope.launch {
             try {
-                result(Result.Success(getSectionFromZendesk()))
+                result(CSResult.Success(getSectionFromZendesk()))
             } catch (exception: Exception) {
                 // Handles exceptions here.
                 // Prints "java.util.concurrent.CancellationException: Continuation
                 Log.d("TAG", "getSection: $exception")
-                result(Result.Error(exception))
+                result(CSResult.Error(exception))
             }
         }
     }
@@ -93,15 +93,15 @@ class ZendeskHelpCenterProviderImpl(
      * Get article - Get Article from zendesk using suspendCoroutine and
      *               Pass Result as lambda function
      */
-    override fun getArticle(id: Long, result: (Result<List<HCArticle>>) -> Unit) {
+    override fun getArticle(id: Long, result: (CSResult<List<HCArticle>>) -> Unit) {
         ioScope.launch {
             try {
-                result(Result.Success(getArticleFromZendesk(id)))
+                result(CSResult.Success(getArticleFromZendesk(id)))
             } catch (exception: Exception) {
                 // Handles exceptions here.
                 // Prints "java.util.concurrent.CancellationException: Continuation
                 Log.d("TAG", "getArticle: $exception")
-                result(Result.Error(exception))
+                result(CSResult.Error(exception))
             }
         }
     }
@@ -110,8 +110,8 @@ class ZendeskHelpCenterProviderImpl(
      * Get Section with article - Get Section Article from zendesk using suspendCoroutine and
      *                            Pass Result as lambda function
      */
-    override fun getSectionWithArticle(result: (Result<List<HCSectionWithArticle>>) -> Unit) {
-        result(Result.InProgress)
+    override fun getSectionWithArticle(result: (CSResult<List<HCSectionWithArticle>>) -> Unit) {
+        result(CSResult.InProgress)
         ioScope.launch {
             try {
                 val sectionWithArticleList: List<HCSectionWithArticle> = getSectionFromZendesk()
@@ -124,12 +124,12 @@ class ZendeskHelpCenterProviderImpl(
                         )
                         hcSectionWithArticle
                     }
-                result(Result.Success(sectionWithArticleList))
+                result(CSResult.Success(sectionWithArticleList))
             } catch (exception: Exception) {
                 // Handles exceptions here.
                 // Prints "java.util.concurrent.CancellationException: Continuation
                 Log.d("TAG", "getSectionWithArticle: $exception")
-                result(Result.Error(exception))
+                result(CSResult.Error(exception))
             }
         }
 

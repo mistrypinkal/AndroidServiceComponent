@@ -3,23 +3,23 @@ package com.pm.cafuservices.components.customer_service
 import com.pm.cafuservices.components.customer_service.manager.model.HCArticle
 import com.pm.cafuservices.components.customer_service.manager.model.HCSection
 import com.pm.cafuservices.components.customer_service.manager.model.HCSectionWithArticle
-import com.pm.cafuservices.components.customer_service.manager.model.Result
+import com.pm.cafuservices.components.customer_service.manager.model.CSResult
 
 interface HelpCentreProvider : CustomerServiceProvider {
 
     /**
-     * Get section with article
+     * Get sections
      */
-    fun getSection(result: (Result<List<HCSection>>) -> Unit)
+    fun getSection(result: (CSResult<List<HCSection>>) -> Unit)
 
     /**
-     * Get section with article
+     * Get articles
      */
-    fun getArticle(id: Long, result: (Result<List<HCArticle>>) -> Unit)
+    fun getArticle(id: Long, result: (CSResult<List<HCArticle>>) -> Unit)
 
     /**
-     * Get section with article
+     * Get sections with articles
      */
-    fun getSectionWithArticle(result: (Result<List<HCSectionWithArticle>>) -> Unit)
+    fun getSectionWithArticle(result: (CSResult<List<HCSectionWithArticle>>) -> Unit)
 
 }
