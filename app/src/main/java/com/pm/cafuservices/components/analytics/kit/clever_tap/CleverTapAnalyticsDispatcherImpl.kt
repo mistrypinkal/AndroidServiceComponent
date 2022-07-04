@@ -7,6 +7,13 @@ import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
 import com.pm.cafuservices.components.analytics.events.UserProperties
 
+/**
+ * @Author: Pinkal Mistry
+ * @Date: 26/06/2022 6:48 PM
+ * @UpdatedDate: 04/07/2022 2:30
+ * @Version: 1.0
+ * @Description: TODO
+ */
 class CleverTapAnalyticsDispatcherImpl(
     override val init: Boolean,
     private val context: Context
@@ -31,12 +38,15 @@ class CleverTapAnalyticsDispatcherImpl(
     }
 
     override fun setUserProperties(properties: UserProperties) {
-        val userProperty = HashMap<String, Any>(1)
-        properties.getUserProperties(kit).forEach {
-            userProperty[it.key] = it.value
-        }
+        cleverTapAPI?.pushProfile(properties.getUserProperties())
+    }
 
-        cleverTapAPI?.pushProfile(userProperty)
+    override fun setUserProfile(properties: UserProperties) {
+        cleverTapAPI?.onUserLogin(properties.getUserProperties())
+    }
+
+    override fun updateUserProfile(properties: UserProperties) {
+        cleverTapAPI?.pushProfile(properties.getUserProperties())
     }
 
     private fun String.firebaseFriendly(): String {
@@ -59,6 +69,14 @@ class CleverTapAnalyticsDispatcherImpl(
                 else -> hashMap[it.key] = it.value
             }
 
+        }
+        return hashMap
+    }
+
+    private fun UserProperties.getUserProperties(): HashMap<String, Any?> {
+        val hashMap = HashMap<String, Any?>()
+        getUserProperties(kit).forEach {
+            hashMap[it.key] = it.value
         }
         return hashMap
     }
