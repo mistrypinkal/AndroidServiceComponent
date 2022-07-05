@@ -17,7 +17,7 @@ class PaidSlotsIntroductionViewCheckup(
     val analytics: Analytics
 ) : ServiceCheckUp {
 
-    val analyticsKit = listOf<AnalyticsKit>(CleverTapKit.instance)
+    val analyticsKit = CleverTapKit.instance
 
     companion object {
         const val KEY = "paid_slot_view"
@@ -35,14 +35,14 @@ class PaidSlotsIntroductionViewCheckup(
             SetPaidSlotProperties(
                 key = KEY,
                 value = true,
-                includedKits = analyticsKit
+                includedKits = listOf(analyticsKit)
             )
         )
     }
 
     class GetPaidSlotProperties(
         override val key: String,
-        override val includedKits: List<AnalyticsKit>
+        override val includedKit: AnalyticsKit
     ) : GetUserProperty
 
 

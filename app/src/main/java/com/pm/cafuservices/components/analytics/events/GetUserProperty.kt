@@ -13,5 +13,8 @@ interface GetUserProperty : Event {
 
     val key: String
 
+    val includedKit: AnalyticsKit
+
     override val includedKits: List<AnalyticsKit>
+        get() = listOf(includedKit)
 }
