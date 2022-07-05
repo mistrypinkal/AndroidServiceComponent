@@ -11,7 +11,7 @@ import com.pm.cafuservices.components.analytics.events.base.Event
  */
 interface GetUserProperty : Event {
 
-    override val includedKits: List<AnalyticsKit>
-
     val key: String
+
+    override val includedKits: List<AnalyticsKit>
 }

@@ -11,7 +11,7 @@ import com.pm.cafuservices.components.analytics.AnalyticsKit
 interface SetUserProperty : UserProperties {
 
     val key: String
-    val value: String
+    val value: Any
 
     override fun getUserProperties(kit: AnalyticsKit): MutableMap<String, Any> {
         val userProperties = super.getUserProperties(kit)
