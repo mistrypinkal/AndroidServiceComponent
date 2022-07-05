@@ -9,7 +9,7 @@ import com.pm.cafuservices.components.analytics.events.base.Event
  * @Description: TODO
  */
 class Analytics constructor(
-    val settings: AnalyticsSettings,
+    private val settings: AnalyticsSettings,
     private vararg val dispatchers: AnalyticsDispatcher
 ) {
 
@@ -48,6 +48,17 @@ class Analytics constructor(
     }
 
 
+    fun fetch(event: Event): Any? {
+        dispatchers.forEach { dispatcher ->
+            try {
+                return dispatcher.fetch(event)
+            } catch (e: Exception) {
+            }
+        }
+        return null
+    }
+
+
     /**
      * Set Kit as enabled or disabled for future event dispatches
      */
@@ -62,27 +73,4 @@ class Analytics constructor(
         settings.enabledDispatchers[dispatcherName] = enabled
     }
 
-
-
-    /**
-     * Profile  ---------------------------------------------------------------------
-     * Set user profile to cleverTap
-     */
-    fun setUserProfile(
-        firstName: String?, lastName: String?, email: String?,
-        countryCode: String?, phoneNo: String, picUrl: String?,
-        vendorId: Int?, customerType: String?
-    ) {
-
-    }
-
-    /**
-     * Update user profile to cleverTap
-     */
-    fun updateUserProfile(
-        firstName: String, lastName: String, email: String,
-        picUrl: String, customerType: String
-    ) {
-
-    }
 }

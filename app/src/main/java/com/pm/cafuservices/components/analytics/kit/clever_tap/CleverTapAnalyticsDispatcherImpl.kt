@@ -5,6 +5,7 @@ import com.clevertap.android.sdk.CleverTapAPI
 import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
+import com.pm.cafuservices.components.analytics.events.GetUserProperty
 import com.pm.cafuservices.components.analytics.events.UserProperties
 
 /**
@@ -49,6 +50,10 @@ class CleverTapAnalyticsDispatcherImpl(
         cleverTapAPI?.pushProfile(properties.getUserProperties())
     }
 
+    override fun getUserProperty(event: GetUserProperty): Any? {
+        return cleverTapAPI?.getProperty(event.key)
+    }
+    
     private fun String.firebaseFriendly(): String {
 
         val freebased = lowercase().replace(" ", "_")

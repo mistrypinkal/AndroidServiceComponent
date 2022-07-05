@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.pm.cafuservices.components.analytics
 
 import android.util.Log
@@ -32,6 +34,8 @@ interface AnalyticsDispatcher {
 
     fun updateUserProfile(properties: UserProperties)
 
+    fun getUserProperty(event: GetUserProperty): Any?
+
     /**
      * This method is called from the parent @Analytics class for each event.
      * Override this method if you plan on interfacing your own event types.
@@ -43,29 +47,39 @@ interface AnalyticsDispatcher {
             var handled = false
 
             // track for each type differently, including multiple implementations
-            if (event is CustomEvent) {
-                //trackCustomEvent(event)
-                handled = true
+            when (event) {
+                is CustomEvent -> {
+                    //trackCustomEvent(event)
+                    handled = true
+                }
+                is SetUserProperty -> {
+                    //setUserProperties(event)
+                    handled = true
+                }
+                is SetUserProfile -> {
+                    //setUserProfile(event)
+                    handled = true
+                }
+                is UpdateUserProfile -> {
+                    //setUserProfile(event)
+                    handled = true
+                }
             }
 
-            if (event is SetUserProperty) {
-                //setUserProperties(event)
-                handled = true
-            }
-
-            if (event is SetUserProfile) {
-                //setUserProfile(event)
-                handled = true
-            }
-
-            if (event is UpdateUserProfile) {
-                //setUserProfile(event)
-                handled = true
-            }
-
-        }else{
+        } else {
             Log.d("TAG", "track: Error")
         }
+    }
+
+    fun fetch(event: Event): Any? {
+        // track the event only if it is not configured as excluded
+        if (event.isConsideredIncluded(kit)) {
+
+            if (event is GetUserProperty)
+                return getUserProperty(event)
+        }
+
+        return null
     }
 
 }

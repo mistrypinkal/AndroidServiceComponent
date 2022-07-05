@@ -85,10 +85,17 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun ScaffoldSample() {
 
+        val value = analytics.fetch<String>(1)
+        Log.d("TAG", "clever tap String user properties: $value")
+
+        val value1 = analytics.fetch<Boolean>(2)
+        Log.d("TAG", "clever tap Boolean user properties: $value1")
+
         analytics.track(
             ConfirmPhoneNumberLogEvent(
                 0, "523516006", "+971"
-            )
+            ),
+            ConfirmPhoneNumberLogEvent(0, "523516006", "+971")
         )
 
         analytics.track(
