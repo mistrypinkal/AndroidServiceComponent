@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
+import com.pm.cafuservices.components.analytics.events.GetUserProperty
 import com.pm.cafuservices.components.analytics.events.UserProperties
 
 /**
@@ -45,6 +46,10 @@ class FirebaseAnalyticsDispatcherImpl(
     }
 
     override fun updateUserProfile(properties: UserProperties) {
+    }
+
+    override fun getUserProperty(event: GetUserProperty): Any? {
+        return null
     }
 
 

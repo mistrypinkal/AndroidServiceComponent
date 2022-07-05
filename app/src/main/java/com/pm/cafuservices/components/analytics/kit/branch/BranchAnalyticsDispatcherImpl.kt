@@ -4,6 +4,7 @@ import android.content.Context
 import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
+import com.pm.cafuservices.components.analytics.events.GetUserProperty
 import com.pm.cafuservices.components.analytics.events.UserProperties
 import com.pm.cafuservices.components.analytics.kit.clever_tap.CleverTapKit
 import io.branch.referral.util.BranchEvent
@@ -55,5 +56,9 @@ class BranchAnalyticsDispatcherImpl(
 
     override fun updateUserProfile(properties: UserProperties) {
         TODO("Not yet implemented")
+    }
+
+    override fun getUserProperty(event: GetUserProperty): Any? {
+        return null
     }
 }
