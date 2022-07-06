@@ -30,7 +30,7 @@ interface AnalyticsDispatcher {
 
     fun setUserProperties(properties: UserProperties)
 
-    fun setUserProfile(properties: UserProperties)
+    fun setUserProfileInfo(properties: UserProperties)
 
     fun updateUserProfile(properties: UserProperties)
 
@@ -49,7 +49,7 @@ interface AnalyticsDispatcher {
             // track for each type differently, including multiple implementations
             when (event) {
                 is CustomEvent -> {
-                    //trackCustomEvent(event)
+                    trackCustomEvent(event)
                     handled = true
                 }
                 is SetUserProperty -> {
@@ -57,7 +57,7 @@ interface AnalyticsDispatcher {
                     handled = true
                 }
                 is SetUserProfile -> {
-                    //setUserProfile(event)
+                    setUserProfileInfo(event)
                     handled = true
                 }
                 is UpdateUserProfile -> {

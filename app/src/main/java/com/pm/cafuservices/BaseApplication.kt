@@ -6,11 +6,13 @@ import com.pm.cafuservices.components.analytics.Analytics
 import com.pm.cafuservices.components.analytics.AnalyticsSettings
 import com.pm.cafuservices.components.analytics.kit.clever_tap.CleverTapAnalyticsDispatcherImpl
 import com.pm.cafuservices.components.analytics.kit.firebase.FirebaseAnalyticsDispatcherImpl
+import dagger.hilt.android.HiltAndroidApp
 import io.branch.referral.Branch
 
+@HiltAndroidApp
 class BaseApplication : MultiDexApplication() {
 
-    lateinit var analytics: Analytics
+   // lateinit var analytics: Analytics
 
 
     override fun onCreate() {
@@ -29,7 +31,7 @@ class BaseApplication : MultiDexApplication() {
 
     private fun initAnalytics() {
         // set an analytics enabled / disabled via SharedPrefs, Database, or anything else
-        val settings = AnalyticsSettings().also {
+      /*  val settings = AnalyticsSettings().also {
             it.isAnalyticsEnabled = true
         }
 
@@ -39,7 +41,7 @@ class BaseApplication : MultiDexApplication() {
             FirebaseAnalyticsDispatcherImpl(init = true, context = this),
             CleverTapAnalyticsDispatcherImpl(init = true, context = this),
         )
-
+*/
     }
 
 

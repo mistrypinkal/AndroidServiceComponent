@@ -28,10 +28,13 @@ import com.pm.cafuservices.components.customer_service.manager.model.UserIdentit
 import com.pm.cafuservices.jetpack.ui.theme.CafuJetpackComposeTheme
 import com.pm.cafuservices.sample_event.ConfirmPhoneNumberLogEvent
 import com.pm.cafuservices.sample_event.SetUserProfile
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    val app: BaseApplication
+/*    val app: BaseApplication
         get() {
             return application as BaseApplication
         }
@@ -39,7 +42,12 @@ class MainActivity : ComponentActivity() {
     val analytics: Analytics
         get() {
             return app.analytics
-        }
+        }*/
+
+
+    @Inject
+    lateinit var analytics: Analytics
+
 
     private val customerService = ZendeskHelpCenterProviderImpl(this)
 
@@ -84,12 +92,6 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun ScaffoldSample() {
-
-        val value = analytics.fetch<String>(1)
-        Log.d("TAG", "clever tap String user properties: $value")
-
-        val value1 = analytics.fetch<Boolean>(2)
-        Log.d("TAG", "clever tap Boolean user properties: $value1")
 
         analytics.track(
             ConfirmPhoneNumberLogEvent(

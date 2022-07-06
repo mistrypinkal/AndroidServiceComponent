@@ -50,7 +50,7 @@ class BranchAnalyticsDispatcherImpl(
         TODO("Not yet implemented")
     }
 
-    override fun setUserProfile(properties: UserProperties) {
+    override fun setUserProfileInfo(properties: UserProperties) {
         TODO("Not yet implemented")
     }
 

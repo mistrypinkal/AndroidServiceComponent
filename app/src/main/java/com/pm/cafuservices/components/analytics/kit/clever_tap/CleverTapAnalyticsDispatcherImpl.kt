@@ -1,12 +1,14 @@
 package com.pm.cafuservices.components.analytics.kit.clever_tap
 
 import android.content.Context
+import android.util.Log
 import com.clevertap.android.sdk.CleverTapAPI
 import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
 import com.pm.cafuservices.components.analytics.events.GetUserProperty
 import com.pm.cafuservices.components.analytics.events.UserProperties
+import javax.inject.Inject
 
 /**
  * @Author: Pinkal Mistry
@@ -15,7 +17,7 @@ import com.pm.cafuservices.components.analytics.events.UserProperties
  * @Version: 1.0
  * @Description: TODO
  */
-class CleverTapAnalyticsDispatcherImpl(
+class CleverTapAnalyticsDispatcherImpl @Inject constructor(
     override val init: Boolean,
     private val context: Context
 ) : AnalyticsDispatcher {
@@ -35,15 +37,18 @@ class CleverTapAnalyticsDispatcherImpl(
     }
 
     override fun trackCustomEvent(event: CustomEvent) {
-        cleverTapAPI?.pushEvent(event.getEventName(kit).firebaseFriendly(), event.getParameters())
+        //cleverTapAPI?.pushEvent(event.getEventName(kit).firebaseFriendly(), event.getParameters())
+        Log.d("TAG", "CleverTapAnalyticsDispatcherImpl trackCustomEvent:")
     }
 
     override fun setUserProperties(properties: UserProperties) {
         cleverTapAPI?.pushProfile(properties.getUserProperties())
     }
 
-    override fun setUserProfile(properties: UserProperties) {
-        cleverTapAPI?.onUserLogin(properties.getUserProperties())
+    override fun setUserProfileInfo(properties: UserProperties) {
+       // cleverTapAPI?.onUserLogin(properties.getUserProperties())
+        Log.d("TAG", "CleverTapAnalyticsDispatcherImpl setUserProfileInfo:")
+
     }
 
     override fun updateUserProfile(properties: UserProperties) {
@@ -53,7 +58,7 @@ class CleverTapAnalyticsDispatcherImpl(
     override fun getUserProperty(event: GetUserProperty): Any? {
         return cleverTapAPI?.getProperty(event.key)
     }
-    
+
     private fun String.firebaseFriendly(): String {
 
         val freebased = lowercase().replace(" ", "_")

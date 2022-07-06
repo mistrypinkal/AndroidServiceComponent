@@ -2,11 +2,13 @@ package com.pm.cafuservices.components.analytics.kit.firebase
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import com.pm.cafuservices.components.analytics.AnalyticsDispatcher
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
 import com.pm.cafuservices.components.analytics.events.GetUserProperty
 import com.pm.cafuservices.components.analytics.events.UserProperties
+import javax.inject.Inject
 
 /**
  * @Author: Pinkal Mistry
@@ -14,7 +16,7 @@ import com.pm.cafuservices.components.analytics.events.UserProperties
  * @Version: 1.0
  * @Description: TODO
  */
-class FirebaseAnalyticsDispatcherImpl(
+class FirebaseAnalyticsDispatcherImpl constructor(
     override val init: Boolean,
     private val context: Context
 ) : AnalyticsDispatcher {
@@ -35,13 +37,14 @@ class FirebaseAnalyticsDispatcherImpl(
 
     override fun trackCustomEvent(event: CustomEvent) {
         //  firebaseAnalytics?.logEvent(event.getEventName(kit).firebaseFriendly(), event.getBundle())
+        Log.d("TAG", "FirebaseAnalyticsDispatcherImpl trackCustomEvent:")
     }
 
     override fun setUserProperties(properties: UserProperties) {
     }
 
 
-    override fun setUserProfile(properties: UserProperties) {
+    override fun setUserProfileInfo(properties: UserProperties) {
         //firebase.onUserLogin(properties.getUserProperties())
     }
 

@@ -2,6 +2,7 @@ package com.pm.cafuservices.sample_event
 
 import com.pm.cafuservices.components.analytics.AnalyticsKit
 import com.pm.cafuservices.components.analytics.events.CustomEvent
+import com.pm.cafuservices.components.analytics.kit.clever_tap.CleverTapKit
 import com.pm.cafuservices.components.analytics.kit.firebase.FirebaseKit
 
 class ConfirmPhoneNumberLogEvent constructor(
@@ -14,8 +15,8 @@ class ConfirmPhoneNumberLogEvent constructor(
     private val carrier: String
     private val countryCode: String
 
-    override val excludedKits: List<AnalyticsKit>
-        get() = listOf(FirebaseKit.instance)
+    override val includedKits: List<AnalyticsKit>
+        get() = listOf(CleverTapKit.instance, FirebaseKit.instance)
 
     init {
         this.userStatus = returnUserStatusWhileLogging(userStatus)
