@@ -21,7 +21,7 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 /**
- * @Author: Pinkal
+ * @Author: Pinkal Mistry
  * @Date: 07/07/2022 3:02 PM
  * @Version: 1.0
  * @Description: TODO
@@ -34,7 +34,8 @@ class ZendeskTicketingProviderImpl(
         init()
     }
 
-    private var provider: RequestProvider? = null
+    private var requestProvider: RequestProvider? = null
+    private var uploadProvider: UploadProvider? = null
     private val job = SupervisorJob()
     private val ioScope by lazy { CoroutineScope(job + Dispatchers.IO) }
 
@@ -51,7 +52,6 @@ class ZendeskTicketingProviderImpl(
 
     /**
      * Set identity - Set user detail and create identity
-     *                Also create the provider
      */
     override fun setIdentity(userIdentity: UserIdentity) {
         val name: String = userIdentity.firstName +
@@ -69,9 +69,6 @@ class ZendeskTicketingProviderImpl(
 
         // set instance to support
         Support.INSTANCE.init(Zendesk.INSTANCE)
-
-        // Set provider
-        provider = Support.INSTANCE.provider()?.requestProvider()
     }
 
     override fun createTicket(
@@ -79,7 +76,7 @@ class ZendeskTicketingProviderImpl(
         description: String,
         tag: List<String>,
         customFields: List<TicketCustomFields>,
-        photoFile: File?,
+        photoFile: List<File>?,
         result: (CSResult<Boolean>) -> Unit
     ) {
 
@@ -93,6 +90,22 @@ class ZendeskTicketingProviderImpl(
 
         ioScope.launch {
             try {
+                photoFile?.let {
+                    // upload all image and map to token
+                    val tokenList: MutableList<String?> = it.map { photoFile ->
+                        val token: String? = try {
+                            uploadImageAndGetToken(photoFile)
+                        } catch (exception: Exception) {
+                            null
+                        }
+                        token
+                    } as MutableList<String?>
+
+                    // add attachment
+                    request.setAttachments(tokenList.filterNotNull())
+                }
+
+                // create ticket and pass result
                 result(CSResult.Success(createTicketFromZendesk(request)))
             } catch (exception: Exception) {
                 // Handles exceptions here.
@@ -103,9 +116,17 @@ class ZendeskTicketingProviderImpl(
 
     }
 
+    /**
+     * Create ticket on zendesk that
+     * accept request and
+     * return success as boolean or exception as result
+     */
     private suspend fun createTicketFromZendesk(request: CreateRequest): Boolean =
         suspendCoroutine { continuation ->
-            provider?.createRequest(request, object : ZendeskCallback<Request>() {
+            // Set provider
+            requestProvider = Support.INSTANCE.provider()?.requestProvider()
+
+            requestProvider?.createRequest(request, object : ZendeskCallback<Request>() {
                 override fun onSuccess(r: Request?) {
                     continuation.resume(true)
                 }
@@ -119,6 +140,36 @@ class ZendeskTicketingProviderImpl(
                     )
                 }
 
-            }) ?: continuation.resumeWithException(Exception("Please init Provider"))
+            }) ?: continuation.resumeWithException(Exception("Please init request provider"))
+        }
+
+    /**
+     * Upload image that
+     * accept file and file name from file and
+     * return success as token or exception as result
+     */
+    private suspend fun uploadImageAndGetToken(photoFile: File): String? =
+        suspendCoroutine { continuation ->
+            uploadProvider = Support.INSTANCE.provider()?.uploadProvider()
+
+            uploadProvider?.uploadAttachment(
+                photoFile.name,
+                photoFile,
+                "image/png",
+                object : ZendeskCallback<UploadResponse>() {
+                    override fun onSuccess(uploadResponse: UploadResponse?) {
+                        continuation.resume(uploadResponse?.token)
+                    }
+
+                    override fun onError(er: ErrorResponse?) {
+                        continuation.resumeWithException(
+                            Exception(
+                                er?.reason ?: "Error occurred while uploading image"
+                            )
+                        )
+                    }
+
+                }
+            ) ?: continuation.resumeWithException(Exception("Please init upload provider"))
         }
 }
