@@ -17,6 +17,12 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
+/**
+ * @Author: Pinkal Mistry
+ * @Date: 28/06/2022 6:27 PM
+ * @Version: 1.0
+ * @Description: TODO
+ */
 @OptIn(ExperimentalCoroutinesApi::class)
 class ZendeskHelpCenterProviderImpl(
     val context: Context

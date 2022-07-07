@@ -8,6 +8,12 @@ import com.zopim.android.sdk.api.ZopimChat
 import com.zopim.android.sdk.model.VisitorInfo
 import com.zopim.android.sdk.prechat.ZopimChatActivity
 
+/**
+ * @Author: Pinkal Mistry
+ * @Date: 29/06/2022 10:26 AM
+ * @Version: 1.0
+ * @Description: TODO
+ */
 class ZendeskLiveChatProviderImpl(val context: Context) : LiveChatProvider {
 
     override fun init() {
