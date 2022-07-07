@@ -38,6 +38,10 @@ class ZendeskHelpCenterProviderImpl(
         const val HC_ZENDESK_AUTH_CLIENT_ID = "mobile_sdk_client_975eb402a1fe511124a3"
     }
 
+    init {
+        init()
+    }
+
     /**
      *  Init Zendesk
      */

@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pm.cafuservices.components.analytics.Analytics
+import com.pm.cafuservices.components.customer_service.HelpCentreProvider
 import com.pm.cafuservices.components.customer_service.manager.ZendeskHelpCenterProviderImpl
 import com.pm.cafuservices.components.customer_service.manager.model.CSResult
 import com.pm.cafuservices.components.customer_service.manager.model.UserIdentity
@@ -48,8 +49,8 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var analytics: Analytics
 
-
-    private val customerService = ZendeskHelpCenterProviderImpl(this)
+    @Inject
+    lateinit var helpCenterProvider : HelpCentreProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,9 +119,8 @@ class MainActivity : ComponentActivity() {
             mobileNumber = "+971551385208"
         )
 
-        customerService.init()
-        customerService.setIdentity(userIdentity)
-        customerService.getSection { result ->
+        helpCenterProvider.setIdentity(userIdentity)
+        helpCenterProvider.getSection { result ->
 
             when (result) {
                 is CSResult.Success -> {
@@ -131,7 +131,7 @@ class MainActivity : ComponentActivity() {
         }
 
         var isLoading by remember { mutableStateOf(false) }
-        customerService.getSectionWithArticle { result ->
+        helpCenterProvider.getSectionWithArticle { result ->
             when (result) {
                 is CSResult.Success -> {
                     isLoading = false
