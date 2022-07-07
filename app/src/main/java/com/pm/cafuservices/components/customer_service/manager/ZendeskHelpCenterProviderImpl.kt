@@ -68,10 +68,6 @@ class ZendeskHelpCenterProviderImpl(
         provider = Support.INSTANCE.provider()?.helpCenterProvider()
     }
 
-    override fun <T> getVisitorInfo(userIdentity: UserIdentity): T {
-        TODO("Not yet implemented")
-    }
-
     /**
      * Get section - Get section from zendesk using suspendCoroutine and
      *               Pass Result as lambda function

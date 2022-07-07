@@ -21,7 +21,7 @@ class ZendeskLiveChatProviderImpl(val context: Context) : LiveChatProvider {
      * Get visitor info in form of Zendesk VisitorInfo class
      */
     @Suppress("UNCHECKED_CAST")
-    override fun <T> getVisitorInfo(userIdentity: UserIdentity): T {
+    override fun <T> getVisitorInfo(userIdentity: UserIdentity): T? {
         val visitorName = String.format(
             "%s %s", userIdentity.firstName,
             userIdentity.lastName

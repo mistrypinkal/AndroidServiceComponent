@@ -18,5 +18,7 @@ interface CustomerServiceProvider {
      * Set the visitor info like,
      * User name, mobile number and phone number
      */
-    fun <T> getVisitorInfo(userIdentity: UserIdentity) : T
+    fun <T> getVisitorInfo(userIdentity: UserIdentity): T? {
+        return null
+    }
 }
