@@ -5,6 +5,10 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+// load local properties
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     compileSdk 32
 
@@ -20,6 +24,10 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        // clever tap API key
+        resValue "string", "CLEVER_TAP_TOKEN", localProperties['CLEVER_TAP_TOKEN']
+        resValue "string", "CLEVER_TAP_ACCOUNT_ID", localProperties['CLEVER_TAP_ACCOUNT_ID']
     }
 
     buildTypes {

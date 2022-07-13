@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pm.cafuservices.components.analytics.Analytics
 import com.pm.cafuservices.components.customer_service.HelpCentreProvider
-import com.pm.cafuservices.components.customer_service.manager.ZendeskHelpCenterProviderImpl
 import com.pm.cafuservices.components.customer_service.manager.model.CSResult
 import com.pm.cafuservices.components.customer_service.manager.model.UserIdentity
 import com.pm.cafuservices.jetpack.ui.theme.CafuJetpackComposeTheme
@@ -50,7 +49,7 @@ class MainActivity : ComponentActivity() {
     lateinit var analytics: Analytics
 
     @Inject
-    lateinit var helpCenterProvider : HelpCentreProvider
+    lateinit var helpCenterProvider: HelpCentreProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,9 +95,15 @@ class MainActivity : ComponentActivity() {
 
         analytics.track(
             ConfirmPhoneNumberLogEvent(
-                0, "523516006", "+971"
+                userStatus = 0,
+                phoneNumber = "523516006",
+                countryCode = "+971"
             ),
-            ConfirmPhoneNumberLogEvent(0, "523516006", "+971")
+            ConfirmPhoneNumberLogEvent(
+                userStatus = 0,
+                phoneNumber = "523516006",
+                countryCode = "+971"
+            )
         )
 
         analytics.track(

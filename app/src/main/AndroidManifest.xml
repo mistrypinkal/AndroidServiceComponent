@@ -34,6 +34,16 @@
 
         <activity android:name="com.zopim.android.sdk.prechat.ZopimChatActivity"
             android:exported="true" />
+
+        <meta-data
+            android:name="CLEVERTAP_ACCOUNT_ID"
+            android:value="@string/CLEVER_TAP_ACCOUNT_ID" />
+        <meta-data
+            android:name="CLEVERTAP_TOKEN"
+            android:value="@string/CLEVER_TAP_TOKEN" />
+        <meta-data
+            android:name="CLEVERTAP_USE_GOOGLE_AD_ID"
+            android:value="1" />
     </application>
 
 </manifest>
