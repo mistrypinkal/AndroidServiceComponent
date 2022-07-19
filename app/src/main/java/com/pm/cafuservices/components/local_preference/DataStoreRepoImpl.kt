@@ -11,7 +11,6 @@ import javax.inject.Inject
  * @Version: 1.0
  * @Description: TODO
  */
-@Suppress("UNCHECKED_CAST")
 class DataStoreRepoImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) : DataStoreRepo, DataStoreExtension() {
@@ -19,7 +18,10 @@ class DataStoreRepoImpl @Inject constructor(
     private val TAG: String = "DataStoreRepo"
 
 
-    // Identity ------------------------------------------------------------------------------------
+    /**
+     * ---------------------------------------------------------------------------------------------
+     * Identity preference
+     */
 
     override suspend fun getAccessToken() = dataStore.getValueAsFlow(
         DataStoreKeys.IdentityKeys.ACCESS_TOKEN,
@@ -31,13 +33,15 @@ class DataStoreRepoImpl @Inject constructor(
     }
 
 
-    // View Configuration --------------------------------------------------------------------------
+    /**
+     * ---------------------------------------------------------------------------------------------
+     * View Configuration preference
+     */
 
     override val promoCodeVisibility = dataStore.getValueAsFlow(
         DataStoreKeys.ViewConfigurationKeys.PROMO_CODE_VISIBILITY,
         false
     )
-
 
     override suspend fun savePromoCodeVisibility(isVisible: Boolean) {
         dataStore.setValue(DataStoreKeys.ViewConfigurationKeys.PROMO_CODE_VISIBILITY, isVisible)
