@@ -21,14 +21,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.lifecycleScope
 import com.pm.cafuservices.components.analytics.Analytics
 import com.pm.cafuservices.components.customer_service.HelpCentreProvider
 import com.pm.cafuservices.components.customer_service.manager.model.CSResult
 import com.pm.cafuservices.components.customer_service.manager.model.UserIdentity
+import com.pm.cafuservices.components.local_preference.DataStoreRepo
 import com.pm.cafuservices.jetpack.ui.theme.CafuJetpackComposeTheme
 import com.pm.cafuservices.sample_event.ConfirmPhoneNumberLogEvent
 import com.pm.cafuservices.sample_event.SetUserProfile
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -50,6 +58,9 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var helpCenterProvider: HelpCentreProvider
+
+    @Inject
+    lateinit var dataStoreRepo: DataStoreRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +103,19 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun ScaffoldSample() {
+        lifecycleScope.launch {
+            dataStoreRepo.saveAccessToken("ABCD")
+            dataStoreRepo.savePromoCodeVisibility(true)
+            withContext(Dispatchers.Main) {
+                Log.d("TAG", "dataStoreRepo getAccessToken: ${dataStoreRepo.getAccessToken().toString()}")
+
+                dataStoreRepo.promoCodeVisibility.collect{
+                    Log.d("TAG", "dataStoreRepo promoCodeVisibility: $it")
+                }
+            }
+        }
+
+
 
         analytics.track(
             ConfirmPhoneNumberLogEvent(
